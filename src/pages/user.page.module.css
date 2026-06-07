@@ -1,0 +1,18 @@
+.container {
+  height: 725px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.action {
+  display: flex;
+  gap: 5px;
+  background-color: rgb(203, 201, 201);
+  width: 500px;
+  padding: 0px 45px;
+  cursor: pointer;
+  justify-content: center;
+}
