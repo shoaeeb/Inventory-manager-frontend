@@ -34,8 +34,8 @@ export default function UserLoginForm({
         {errors.username && (
           <p style={{ color: "orangered" }}>{errors.username.message}</p>
         )}
-        {serverErrors.username && (
-          <p style={{ color: "orangered" }}>{serverErrors.username[0]}</p>
+        {serverErrors?.username && (
+          <p style={{ color: "orangered" }}>{serverErrors?.username[0]}</p>
         )}
 
         <label>Password</label>
@@ -47,8 +47,8 @@ export default function UserLoginForm({
         {errors.password && (
           <p style={{ color: "orangered" }}>{errors.password.message}</p>
         )}
-        {serverErrors.password && (
-          <p style={{ color: "orangered" }}>{serverErrors.password[0]}</p>
+        {serverErrors?.password && (
+          <p style={{ color: "orangered" }}>{serverErrors?.password[0]}</p>
         )}
 
         {generalError && (

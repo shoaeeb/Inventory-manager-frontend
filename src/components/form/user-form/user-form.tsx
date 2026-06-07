@@ -41,8 +41,8 @@ export default function UserForm({
         {errors.email && (
           <p style={{ color: "orangered" }}>{errors.email.message}</p>
         )}
-        {serverErrors.email && (
-          <p style={{ color: "orangered" }}>{serverErrors.email[0]}</p>
+        {serverErrors?.email && (
+          <p style={{ color: "orangered" }}>{serverErrors?.email[0]}</p>
         )}
 
         <label>Username</label>
@@ -50,8 +50,8 @@ export default function UserForm({
         {errors.username && (
           <p style={{ color: "orangered" }}>{errors.username.message}</p>
         )}
-        {serverErrors.username && (
-          <p style={{ color: "orangered" }}>{serverErrors.username[0]}</p>
+        {serverErrors?.username && (
+          <p style={{ color: "orangered" }}>{serverErrors?.username[0]}</p>
         )}
 
         <label>Password</label>
@@ -60,11 +60,11 @@ export default function UserForm({
           type="password"
           {...register("password")}
         />
-        {errors.username && (
+        {errors.password && (
           <p style={{ color: "orangered" }}>{errors.password.message}</p>
         )}
-        {serverErrors.password && (
-          <p style={{ color: "orangered" }}>{serverErrors.password[0]}</p>
+        {serverErrors?.password && (
+          <p style={{ color: "orangered" }}>{serverErrors?.password[0]}</p>
         )}
 
         {generalError && (
