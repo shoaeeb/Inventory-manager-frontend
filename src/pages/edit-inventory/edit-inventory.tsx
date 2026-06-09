@@ -16,6 +16,8 @@ const EditInventory = () => {
   const [serverErrors, setServerErrors] = useState<Record<string, string[]>>(
     {}
   );
+  const [quantity, setQuantity] = useState("1");
+  const [category, setCategory] = useState("Uncategorized");
 
   const [generalError, setGeneralError] = useState<string>("");
 
@@ -43,6 +45,8 @@ const EditInventory = () => {
         setName(item.name);
         setPrice(item.price);
         setPreview(item.image_url);
+        setQuantity(String(item.quantity));
+        setCategory(item.category);
       }
     };
     fetchInventory();
@@ -54,6 +58,8 @@ const EditInventory = () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("price", price);
+    formData.append("quantity", quantity);
+    formData.append("category", category);
 
     if (picture) formData.append("picture", picture);
     try {
@@ -104,6 +110,38 @@ const EditInventory = () => {
           />
           {serverErrors.price && (
             <p style={{ color: "orangered" }}>{serverErrors.price[0]}</p>
+          )}
+        </div>
+        <div className={styles.field}>
+          <label className={styles.label}>Quantity</label>
+          <input
+            className={styles.input}
+            type="number"
+            min="1"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
+          {serverErrors.quantity && (
+            <p style={{ color: "orangered" }}>{serverErrors.quantity[0]}</p>
+          )}
+        </div>
+
+        <div className={styles.field}>
+          <label className={styles.label}>Category</label>
+          <select
+            className={styles.input}
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="Uncategorized">Uncategorized</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Accessories">Accessories</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Other">Other</option>
+          </select>
+          {serverErrors.category && (
+            <p style={{ color: "orangered" }}>{serverErrors.category[0]}</p>
           )}
         </div>
         <div className={styles.field}>

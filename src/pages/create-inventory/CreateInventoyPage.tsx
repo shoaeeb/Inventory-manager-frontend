@@ -15,6 +15,8 @@ const CreateInventory = () => {
   const [serverErrors, setServerErrors] = useState<Record<string, string[]>>(
     {}
   );
+  const [quantity, setQuantity] = useState("1");
+  const [category, setCategory] = useState("Uncategorized");
 
   const [generalError, setGeneralError] = useState<string>("");
 
@@ -38,6 +40,8 @@ const CreateInventory = () => {
     formData.append("name", name);
     formData.append("price", price);
     formData.append("picture", picture);
+    formData.append("quantity", quantity);
+    formData.append("category", category);
 
     try {
       const res = await fetch(`${BASE_URL}/api/inventory`, {
@@ -93,6 +97,39 @@ const CreateInventory = () => {
           />
           {serverErrors.price && (
             <p style={{ color: "orangered" }}>{serverErrors.price[0]}</p>
+          )}
+        </div>
+
+        <div className={styles.field}>
+          <label className={styles.label}>Quantity</label>
+          <input
+            className={styles.input}
+            type="number"
+            min="1"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+            placeholder="1"
+          />
+          {serverErrors.quantity && (
+            <p style={{ color: "orangered" }}>{serverErrors.quantity[0]}</p>
+          )}
+        </div>
+        <div className={styles.field}>
+          <label className={styles.label}>Category</label>
+          <select
+            className={styles.input}
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="Uncategorized">Uncategorized</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Accessories">Accessories</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Other">Other</option>
+          </select>
+          {serverErrors.category && (
+            <p style={{ color: "orangered" }}>{serverErrors.category[0]}</p>
           )}
         </div>
         <div className={styles.field}>

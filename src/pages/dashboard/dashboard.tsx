@@ -13,11 +13,15 @@ interface DashboardData {
     name: string;
     price: number;
     image_url: string;
+    quantity: number;
+    category: string;
   } | null;
   recentItems: {
     name: string;
     price: number;
     image_url: string;
+    quantity: string;
+    category: string;
   }[];
 }
 export default function Dashboard() {
@@ -46,7 +50,24 @@ export default function Dashboard() {
     fetchDashboard();
   }, [token]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) {
+    return (
+      <div className={styles.page}>
+        <div className={styles.skeletonTitle}></div>
+        <div className={styles.statsGrid}>
+          <div className={styles.skeletonStatCard} />
+          <div className={styles.skeletonStatCard} />
+          <div className={styles.skeletonStatCard} />
+        </div>
+        <div className={styles.skeletonBlock} />
+        <div className={styles.skeletonList}>
+          <div className={styles.skeletonRow} />
+          <div className={styles.skeletonRow} />
+          <div className={styles.skeletonRow} />
+        </div>
+      </div>
+    );
+  }
   if (!data) return <p>Failed to load dashboard</p>;
   return (
     <div className={styles.page}>
@@ -79,6 +100,10 @@ export default function Dashboard() {
               <p className={styles.itemPrice}>
                 ${Number(data.mostExpensive.price).toFixed(2)}
               </p>
+              <p className={styles.itemMeta}>
+                {data.mostExpensive.category} . Qty:{" "}
+                {data.mostExpensive.quantity}
+              </p>
             </div>
           </div>
         </div>
@@ -91,6 +116,7 @@ export default function Dashboard() {
             <div key={i} className={styles.recentItem}>
               <img src={item.image_url} alt={item.name} />
               <span className={styles.itemName}>{item.name}</span>
+              <span className={styles.itemMeta}>{item.category}</span>
               <span className={styles.itemPrice}>
                 ${Number(item.price).toFixed(2)}
               </span>

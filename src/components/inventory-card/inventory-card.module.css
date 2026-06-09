@@ -89,3 +89,29 @@
 .deleteBtn:hover {
   background: #ffe0e0;
 }
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.4rem;
+}
+
+.category {
+  font-size: 0.75rem;
+  color: #fff;
+  background: #1a1a2e;
+  padding: 0.2rem 0.5rem;
+  border-radius: 20px;
+}
+
+.qty {
+  font-size: 0.78rem;
+  color: #555;
+}
+
+.lowStock {
+  font-size: 0.78rem;
+  color: #c0392b;
+  font-weight: 600;
+}

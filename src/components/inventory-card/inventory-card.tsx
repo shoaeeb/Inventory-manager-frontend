@@ -7,6 +7,8 @@ interface Props {
     name: string;
     price: number;
     image_url: string;
+    quantity: number;
+    category: string;
   };
   onDelete: (id: number) => void;
 }
@@ -20,6 +22,12 @@ const InventoryCard = ({ item, onDelete }: Props) => {
       <div className={styles.body}>
         <h3 className={styles.name}>{item.name}</h3>
         <p className={styles.price}>${Number(item.price).toFixed(2)}</p>
+        <div className={styles.meta}>
+          <span className={styles.category}>{item.category}</span>
+          <span className={item.quantity < 3 ? styles.lowStock : styles.qty}>
+            Qty:{item.quantity}
+          </span>
+        </div>
       </div>
       <div className={styles.actions}>
         <Link to={`/edit-inventory/${item.id}`} className={styles.editBtn}>

@@ -111,3 +111,52 @@
   border-bottom: 2px solid #1a1a2e;
   padding-bottom: 2px;
 }
+
+.itemMeta {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -600px 0;
+  }
+  100% {
+    background-position: 600px 0;
+  }
+}
+
+.skeletonTitle,
+.skeletonStatCard,
+.skeletonBlock,
+.skeletonRow {
+  background: linear-gradient(90deg, #ebebeb 25%, #f5f5f5 50%, #ebebeb 75%);
+  background-size: 600px 100%;
+  animation: shimmer 1.4s infinite linear;
+  border-radius: 12px;
+}
+
+.skeletonTitle {
+  height: 2rem;
+  width: 260px;
+  margin-bottom: 8rem;
+}
+
+.skeletonStatCard {
+  height: 100px;
+}
+
+.skeletonBlock {
+  height: 100px;
+  margin-bottom: 2rem;
+}
+
+.skeletonList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.skeletonRow {
+  height: 70px;
+}

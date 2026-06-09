@@ -10,6 +10,8 @@ interface InventoryItem {
   name: string;
   price: number;
   image_url: string;
+  quantity: number;
+  category: string;
 }
 
 const InventoryPage = () => {
@@ -21,6 +23,7 @@ const InventoryPage = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [refresh, setRefresh] = useState(0);
+  const [category, setCategory] = useState("");
 
   const token = localStorage.getItem("token");
 
@@ -33,6 +36,7 @@ const InventoryPage = () => {
         page: String(page),
         ...(minPrice && { minPrice }),
         ...(maxPrice && { maxPrice }),
+        ...(category && { category }),
       });
 
       try {
@@ -50,7 +54,7 @@ const InventoryPage = () => {
     };
 
     fetchInventory();
-  }, [search, minPrice, maxPrice, page, token, refresh]);
+  }, [search, minPrice, maxPrice, page, token, refresh, category]);
 
   const handleDelete = async (id: number) => {
     if (!confirm("Delete this item?")) return;
@@ -86,6 +90,7 @@ const InventoryPage = () => {
     setPage(1);
     setMinPrice("");
     setMaxPrice("");
+    setCategory("");
   };
 
   return (
@@ -119,6 +124,22 @@ const InventoryPage = () => {
           value={maxPrice}
           onChange={(e) => handleMaxPriceChange(e)}
         />
+        <select
+          value={category}
+          onChange={(e) => {
+            setCategory(e.target.value);
+            setPage(1);
+          }}
+          className={styles.categorySelect}
+        >
+          <option value="">All Categories</option>
+          <option value="Uncategorized">Uncategorized</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Accessories">Accessories</option>
+          <option value="Clothing">Clothing</option>
+          <option value="Furniture">Furniture</option>
+          <option value="Other">Other</option>
+        </select>
         <button className={styles.clearBtn} onClick={handleClear}>
           Clear
         </button>

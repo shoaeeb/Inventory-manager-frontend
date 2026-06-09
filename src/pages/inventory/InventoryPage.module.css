@@ -64,6 +64,19 @@
   border-color: #1a1a2e;
 }
 
+.categorySelect {
+  padding: 0.6rem 1rem;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+  background: #fff;
+  cursor: pointer;
+}
+.categorySelect:focus {
+  border-color: #1a1a2e;
+}
+
 .clearBtn {
   padding: 0.6rem 1rem;
   background: #f5f5f5;

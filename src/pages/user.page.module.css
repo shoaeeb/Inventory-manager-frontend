@@ -1,18 +1,20 @@
 .container {
-  height: 725px;
+  min-height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 1rem;
 }
 
 .action {
   display: flex;
   gap: 5px;
   background-color: rgb(203, 201, 201);
-  width: 500px;
-  padding: 0px 45px;
+  width: 100%;
+  max-width: 230px;
+  padding: 10px 45px;
   cursor: pointer;
   justify-content: center;
 }
